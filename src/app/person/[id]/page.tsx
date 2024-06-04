@@ -114,7 +114,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 </p>
               </CardContent>
             </Card>
-            {profileData.species.length !== 0 && profileData.species.map((type) => <SpeciesInfo id={parseIdFromString(type)} />)}
+            {profileData.species.length !== 0 && profileData.species.map((type) => <SpeciesInfo id={parseIdFromString(type)} key={type} />)}
           </div>
         </TabsContent>
         <TabsContent value="Films" className="py-8 px-6">

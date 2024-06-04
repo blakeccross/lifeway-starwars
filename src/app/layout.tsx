@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import { MainNav } from "@/components/main-nav";
+import localFont from "next/font/local";
 
+const jabba = localFont({ src: "../app/public/fonts/jabba_regular.ttf", variable: "--font-jaba" });
+const star_jedi = localFont({ src: "../app/public/fonts/Starjedi.ttf", variable: "--font-star-jedi" });
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <body className={`${inter.className} ${jabba.variable} ${star_jedi.variable}`}>
+          <div className="grid min-h-screen w-full">
+            <div className="flex flex-col">
+              <MainNav />
+              {children}
+            </div>
+          </div>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
